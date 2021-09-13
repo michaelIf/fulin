@@ -1,2 +1,56 @@
 1.整体目标
 一个能够手动/自动录入消费信息的系统。根据录入的信息，能够自动生成分析报告
+2.数据库
+fu_users #记录用户信息，密码考虑加密保存
+create TABLE fu_users(
+    userId int primary key auto_increment,#用户编号
+    userName varchar(50),#用户名称
+    password varchar(50),#用户密码
+    sex char(1),#用户性别，男或者女
+    email varchar(50), #用户邮箱
+    phone varchar(11)#用户手机号
+)
+
+fu_category #品类表 考虑用枚举代替
+create TABLE fu_category(
+    categoryId int primary key auto_increment,#用户编号
+    categoryName varchar(50),#品类名称
+)
+
+fu_shopping_record #购买记录表
+
+create TABLE fu_shopping_record(
+    recordId int primary key auto_increment,#记录编号
+    recordUser varchar(50),#记录者
+    category varchar(50),#记录品类
+    price double, #记录单价
+    amount double, #记录数量
+    weight double, #记录重量
+    status byte, # 记录状态 1成功，2全额退款，3部分退款
+    sumPrice double, #记录总价
+    shoppingTime date, #消费时间
+    createTime date,#创建时间
+    updateTime date #更新时间
+)
+
+# fu_summary_record #汇总记录表
+create TABLE fu_summary_record(
+    summaryId int primary key auto_increment,#汇总编号
+    status byte, # 汇总状态，1成功，2汇总中，3失败
+    summaryWay byte, # 汇总方式，1按时间，2按品类，3按时间+品类
+    beginDate date, #汇总开始时间
+    endDate date #汇总结束时间
+)
+# fu_refund_record #退款记录表
+create fu_refund_record(
+    refundId int primary key auto_increment,#退款编号
+    shoppingId  fu_shopping_record.recordId # 消费记录
+    refundAmount int #退款数量
+    refundPrice double #退款金额
+    status byte #退款状态
+    createTime date,#创建时间
+    updateTime date #更新时间
+)
+
+
+
