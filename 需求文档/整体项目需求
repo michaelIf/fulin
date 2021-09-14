@@ -26,7 +26,7 @@ create TABLE fu_shopping_record(
     price double, #记录单价
     amount double, #记录数量
     weight double, #记录重量
-    status byte, # 记录状态 1成功，2全额退款，3部分退款
+    status tinyint, # 记录状态 1成功，2全额退款，3部分退款
     sumPrice double, #记录总价
     shoppingTime date, #消费时间
     createTime date,#创建时间
@@ -36,18 +36,18 @@ create TABLE fu_shopping_record(
 # fu_summary_record #汇总记录表
 create TABLE fu_summary_record(
     summaryId int primary key auto_increment,#汇总编号
-    status byte, # 汇总状态，1成功，2汇总中，3失败
-    summaryWay byte, # 汇总方式，1按时间，2按品类，3按时间+品类
+    status tinyint, # 汇总状态，1成功，2汇总中，3失败
+    summaryWay tinyint, # 汇总方式，1按时间，2按品类，3按时间+品类
     beginDate date, #汇总开始时间
     endDate date #汇总结束时间
 )
 # fu_refund_record #退款记录表
-create fu_refund_record(
+create TABLE fu_refund_record(
     refundId int primary key auto_increment,#退款编号
-    shoppingId  fu_shopping_record.recordId # 消费记录
-    refundAmount int #退款数量
-    refundPrice double #退款金额
-    status byte #退款状态
+    shoppingId int, # 消费记录fu_shopping_record.recordId
+    refundAmount int, #退款数量
+    refundPrice double, #退款金额
+    `status` tinyint, #退款状态
     createTime date,#创建时间
     updateTime date #更新时间
 )
