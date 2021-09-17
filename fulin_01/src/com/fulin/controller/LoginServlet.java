@@ -14,7 +14,7 @@ public class LoginServlet extends HttpServlet {
         String userName,password;
         FuUserDao dao=new FuUserDao();
         int result=0;
-        request.setCharacterEncoding("usf-8");
+        request.setCharacterEncoding("utf-8");
         userName=request.getParameter("userName");
         password=request.getParameter("password");
         result=dao.login(userName,password);

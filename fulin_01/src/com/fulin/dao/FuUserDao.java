@@ -3,6 +3,7 @@ package com.fulin.dao;
 import com.fulin.entity.Fu_users;
 import com.fulin.util.JdbcUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +14,7 @@ public class FuUserDao {
 
     public int addUser(Fu_users user){
 
-        String sql="insert into users(userName,password,sex,email,phone)"+
+        String sql="insert into fu_users(userName,password,sex,email,phone)"+
                 "values(?,?,?,?,?)";
         PreparedStatement ps=util.createStatement(sql);
         int result=0;
@@ -31,9 +32,30 @@ public class FuUserDao {
         }
         return result;
     }
+    public int addUser(Fu_users user, HttpServletRequest request){
+
+        String sql="insert into fu_users(userName,password,sex,email,phone)"+
+                "values(?,?,?,?,?)";
+        PreparedStatement ps=util.createStatement(sql,request);
+        int result=0;
+        try {
+            ps.setString(1,user.getUserName());
+            ps.setString(2,user.getPassword());
+            ps.setString(3,user.getSex());
+            ps.setString(4,user.getEmail());
+            ps.setString(5,user.getPhone());
+            result=ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(request);
+        }
+        return result;
+    }
+
     //登录验证
     public int login(String userName,String password){
-        String sql="select count(*) from users where userName=? and password=?";
+        String sql="select count(*) from fu_users where userName=? and password=?";
         PreparedStatement ps=util.createStatement(sql);
         ResultSet rs=null;
         int result=0;
