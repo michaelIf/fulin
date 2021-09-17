@@ -4,6 +4,7 @@ import com.fulin.entity.Fu_users;
 import com.fulin.util.JdbcUtil;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -27,6 +28,26 @@ public class FuUserDao {
             e.printStackTrace();
         } finally {
             util.close();
+        }
+        return result;
+    }
+    //登录验证
+    public int login(String userName,String password){
+        String sql="select count(*) from users where userName=? and password=?";
+        PreparedStatement ps=util.createStatement(sql);
+        ResultSet rs=null;
+        int result=0;
+        try {
+            ps.setString(1,userName);
+            ps.setString(2,password);
+            rs=ps.executeQuery();
+            while (rs.next()){
+                result=rs.getInt("count(*)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            util.close(rs);
         }
         return result;
     }
