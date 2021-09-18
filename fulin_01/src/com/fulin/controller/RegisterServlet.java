@@ -17,6 +17,8 @@ public class RegisterServlet extends HttpServlet {
         Fu_users user=null;
         int result=0;
         PrintWriter out=null;
+        //解决性别传值为男时写入数据库为乱码问题
+        request.setCharacterEncoding("utf-8");
         userName=request.getParameter("userName");
         email=request.getParameter("email");
         phone=request.getParameter("phone");
