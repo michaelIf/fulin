@@ -20,6 +20,7 @@ public class LoginServlet extends HttpServlet {
         result=dao.login(userName,password);
         if (result==1){
             HttpSession session=request.getSession();
+            session.setAttribute("loginUser",userName);
             response.sendRedirect("/myWeb/index.html");
         }else {
             response.sendRedirect("/myWeb/login_error.html");

@@ -17,7 +17,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RecordShoppingServlet</servlet-name>
-        <url-pattern>/recordshopping</url-pattern>
+        <url-pattern>/recordshopping/add</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>

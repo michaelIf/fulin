@@ -1,13 +1,47 @@
 package com.fulin.controller;
 
+import com.fulin.dao.FuRecordDao;
+import com.fulin.entity.Fu_shopping_record;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Date;
 
 public class RecordShoppingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String recordUser,category;
+        Double price,amount,weight,sumPrice;
+        Long shoppingTime=null;
+        Date createTime,updateTime;
+        Byte status=1;
+        FuRecordDao dao=new FuRecordDao();
+        Fu_shopping_record fuRecord=null;
+        int result=0;
+        PrintWriter out=null;
+        HttpSession session=request.getSession();
+        recordUser=(String)session.getAttribute("loginUser");
+        category=request.getParameter("category");
+        price=Double.parseDouble(request.getParameter("price"));
+        amount=Double.parseDouble(request.getParameter("amount"));
+        weight=Double.parseDouble(request.getParameter("weight"));
+        sumPrice=Double.parseDouble(request.getParameter("sumPrice"));
+        shoppingTime=Date.parse(request.getParameter("shoppingTime"));
+        createTime=Date.valueOf(System.currentTimeMillis()+"");
+        updateTime=Date.valueOf(System.currentTimeMillis()+"");
+        fuRecord=new Fu_shopping_record(null,recordUser,category,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime);
+        result=dao.addRecord(fuRecord,request);
+        response.setContentType("text/html;charset=utf-8");
+        out=response.getWriter();
+        if(result>=1){
+            out.print("<font style='color:red;font-size:40'>消费信息增加成功</font>");
+        }else {
+            out.print("<font style='color:red;font-size:40'>消费信息增加失败</font>");
+        }
 
 
     }

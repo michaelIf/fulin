@@ -6,13 +6,36 @@
 </head>
 <body>
 <center>
-    <form action="/myWeb/recordshopping" method="post">
+    <form action="/myWeb/recordshopping/add" method="post">
         <table border="2">
             <tr>
-                <td>消费</td>
+                <td>品类</td>
+                <td><input type="text" name="category"/></td>
+            </tr>
+            <tr>
+                <td>单价</td>
+                <td><input type="text" name="price"/></td>
+            </tr>
+            <tr>
+                <td>数量</td>
+                <td>
+                    <input type="text" name="amount"/>
+                </td>
+
+            </tr>
+            <tr>
+                <td>重量</td>
+                <td><input type="text" name="weight"/></td>
+            </tr>
+            <tr>
+                <td>总价</td>
+                <td><input type="text" name="sumPrice"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="提交记录"/></td>
+                <td><input type="reset"/></td>
             </tr>
         </table>
-    </form>
 </center>
 </body>
 </html>
