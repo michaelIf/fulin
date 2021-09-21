@@ -11,9 +11,9 @@ public class Fu_shopping_record {
     private Double weight;//记录重量
     private Byte status;//记录状态 1成功，2全额退款，3部分退款
     private Double sumPrice;//记录总价
-    private Long shoppingTime;//消费时间
-    private Date createTime;//创建时间
-    private Date updateTime;//更新时间
+    private String shoppingTime;//消费时间
+    private String createTime;//创建时间
+    private String updateTime;//更新时间
 
     public void setRecordId(Integer recordId) {
         this.recordId = recordId;
@@ -47,15 +47,15 @@ public class Fu_shopping_record {
         this.sumPrice = sumPrice;
     }
 
-    public void setShoppingTime(Long shoppingTime) {
+    public void setShoppingTime(String shoppingTime) {
         this.shoppingTime = shoppingTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 
@@ -91,22 +91,22 @@ public class Fu_shopping_record {
         return sumPrice;
     }
 
-    public Long getShoppingTime() {
+    public String getShoppingTime() {
         return shoppingTime;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
     public Fu_shopping_record() {
     }
 
-    public Fu_shopping_record(Integer recordId, String recordUser, String category, Double price, Double amount, Double weight, Byte status, Double sumPrice, Long shoppingTime, Date createTime, Date updateTime) {
+    public Fu_shopping_record(Integer recordId, String recordUser, String category, Double price, Double amount, Double weight, Byte status, Double sumPrice, String shoppingTime, String createTime, String updateTime) {
         this.recordId = recordId;
         this.recordUser = recordUser;
         this.category = category;

@@ -23,9 +23,9 @@ public class FuRecordDao {
             ps.setDouble(5,fuRecord.getWeight());
             ps.setInt(6,fuRecord.getStatus());
             ps.setDouble(7,fuRecord.getSumPrice());
-            ps.setLong(8,fuRecord.getShoppingTime());
-            ps.setDate(9,fuRecord.getCreateTime());
-            ps.setDate(10,fuRecord.getUpdateTime());
+            ps.setString(8,fuRecord.getShoppingTime());
+            ps.setString(9,fuRecord.getCreateTime());
+            ps.setString(10,fuRecord.getUpdateTime());
             result=ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

@@ -11,17 +11,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class RecordShoppingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String recordUser,category;
         Double price,amount,weight,sumPrice;
-        Long shoppingTime=null;
-        Date createTime,updateTime;
+        String shoppingTime=null;
+        String createTime,updateTime;
         Byte status=1;
         FuRecordDao dao=new FuRecordDao();
         Fu_shopping_record fuRecord=null;
         int result=0;
+        request.setCharacterEncoding("utf-8");
         PrintWriter out=null;
         HttpSession session=request.getSession();
         recordUser=(String)session.getAttribute("loginUser");
@@ -30,9 +32,11 @@ public class RecordShoppingServlet extends HttpServlet {
         amount=Double.parseDouble(request.getParameter("amount"));
         weight=Double.parseDouble(request.getParameter("weight"));
         sumPrice=Double.parseDouble(request.getParameter("sumPrice"));
-        shoppingTime=Date.parse(request.getParameter("shoppingTime"));
-        createTime=Date.valueOf(System.currentTimeMillis()+"");
-        updateTime=Date.valueOf(System.currentTimeMillis()+"");
+        shoppingTime=request.getParameter("shoppingTime");
+        Date time = new Date(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        createTime=sdf.format(time);
+        updateTime=sdf.format(time);
         fuRecord=new Fu_shopping_record(null,recordUser,category,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime);
         result=dao.addRecord(fuRecord,request);
         response.setContentType("text/html;charset=utf-8");
