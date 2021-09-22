@@ -1,39 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <link href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <center>
     <form action="/myWeb/recordshopping/add" method="post">
+        <center><h3>添加消费记录</h3></center>
         <table border="2">
-            <tr><td colspan="7" style="color: darkslategrey;font-size: large">添加记录</td>
-            </tr>
-            <tr>
-                <td style="color: green">品类</td><td style="color: green">名称</td><td style="color: green">单价</td>
+            <thead>
+            <tr bgcolor="#faebd7">
+                <td style="color: green">序号</td><td style="color: green">品类</td><td style="color: green">名称</td><td style="color: green">单价</td>
                 <td style="color: green">数量</td><td style="color: green">重量</td><td style="color: green">总价</td><td style="color: green">日期</td>
             </tr>
+            </thead>
+            <tbody>
             <tr>
+                <td class="td" align="center">1</td><td><input type="text" name="category"/></td><td><input type="text" name="sname"/>
+                </td><td><input type="text" name="price"/></td><td><input type="text" name="amount"/></td><td><input type="text" name="weight"/></td>
+                <td><input type="text" name="sumPrice"/></td><td><input type="text" name="shoppingTime"/></td>
+            </tr>
+            <tr>
+                <td class="td" align="center">2</td>
                 <td><input type="text" name="category"/></td><td><input type="text" name="sname"/></td><td><input type="text" name="price"/></td>
                 <td><input type="text" name="amount"/></td><td><input type="text" name="weight"/></td><td><input type="text" name="sumPrice"/></td>
                 <td><input type="text" name="shoppingTime"/></td>
             </tr>
             <tr>
+                <td class="td" align="center">3</td>
                 <td><input type="text" name="category"/></td><td><input type="text" name="sname"/></td><td><input type="text" name="price"/></td>
                 <td><input type="text" name="amount"/></td><td><input type="text" name="weight"/></td><td><input type="text" name="sumPrice"/></td>
                 <td><input type="text" name="shoppingTime"/></td>
             </tr>
-            <tr>
-                <td><input type="text" name="category"/></td><td><input type="text" name="sname"/></td><td><input type="text" name="price"/></td>
-                <td><input type="text" name="amount"/></td><td><input type="text" name="weight"/></td><td><input type="text" name="sumPrice"/></td>
-                <td><input type="text" name="shoppingTime"/></td>
-            </tr>
+            </tbody>
             <tr>
                 <td><input type="submit" value="提交记录"/></td>
                 <td><input type="reset"/></td>
+                <td><button onclick="fun()">增加一行</button></td>
+                <td><button onclick="del()">删除一行</button></td>
             </tr>
         </table>
+        <script type="text/javascript">
+            //前面的序号1,2,3......
+            var i = 1;
+            $(".td").each(function(){
+                $(this).html(i++);
+            })
+            //添加一行
+            function fun(){
+                var $td = $("#clo").clone();       //增加一行,克隆第一个对象
+                $(".table").append($td);
+                var i = 1;
+                $(".td").each(function(){       //增加一行后重新更新序号1,2,3......
+                    $(this).html(i++);
+                })
+                $("table tr:last").find(":input").val('');   //将尾行元素克隆来的保存的值清空
+            }
+            //删除一行
+            function del(){
+                $("table tr:not(:first):not(:first):last").remove();//移除最后一行,并且保留前两行
+            }
+        </script>
+    </form>
 </center>
 </body>
 </html>
