@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 
 public class RecordShoppingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recordUser,category;
+        String recordUser,category,goodName;
         Double price,amount,weight,sumPrice;
         String shoppingTime=null;
         String createTime,updateTime;
@@ -28,6 +28,9 @@ public class RecordShoppingServlet extends HttpServlet {
         HttpSession session=request.getSession();
         recordUser=(String)session.getAttribute("loginUser");
         category=request.getParameter("category");
+        // TODO: 2021/9/23 将每个参数的多个值拆开，合并成一条记录，并入库 
+        System.out.println("category is "+category);
+        goodName=request.getParameter("goodName");
         price=Double.parseDouble(request.getParameter("price"));
         amount=Double.parseDouble(request.getParameter("amount"));
         weight=Double.parseDouble(request.getParameter("weight"));
@@ -37,10 +40,11 @@ public class RecordShoppingServlet extends HttpServlet {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         createTime=sdf.format(time);
         updateTime=sdf.format(time);
-        fuRecord=new Fu_shopping_record(null,recordUser,category,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime);
-        result=dao.addRecord(fuRecord,request);
-        response.setContentType("text/html;charset=utf-8");
-        out=response.getWriter();
+        fuRecord=new Fu_shopping_record(null,recordUser,category,goodName,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime);
+        System.out.println("category is "+category);
+//        result=dao.addRecord(fuRecord,request);
+//        response.setContentType("text/html;charset=utf-8");
+//        out=response.getWriter();
         if(result>=1){
             out.print("<font style='color:red;font-size:40'>消费信息增加成功</font>");
         }else {
