@@ -23,6 +23,7 @@ create TABLE fu_shopping_record(
     recordId int primary key auto_increment,#记录编号
     recordUser varchar(50),#记录者
     category varchar(50),#记录品类
+    goodName varchar(50), # 物品名称
     price double, #记录单价
     amount double, #记录数量
     weight double, #记录重量

@@ -6,6 +6,7 @@ public class Fu_shopping_record {
     private Integer recordId;//记录编号
     private String recordUser;//记录者
     private String category;//记录品类
+    private String goodName;//物品名称
     private Double price;//记录单价
     private Double amount;//记录数量
     private Double weight;//记录重量
@@ -17,6 +18,10 @@ public class Fu_shopping_record {
 
     public void setRecordId(Integer recordId) {
         this.recordId = recordId;
+    }
+
+    public void setGoodName(String goodName) {
+        this.goodName = goodName;
     }
 
     public void setRecordUser(String recordUser) {
@@ -83,6 +88,10 @@ public class Fu_shopping_record {
         return weight;
     }
 
+    public String getGoodName() {
+        return goodName;
+    }
+
     public Byte getStatus() {
         return status;
     }
@@ -106,10 +115,11 @@ public class Fu_shopping_record {
     public Fu_shopping_record() {
     }
 
-    public Fu_shopping_record(Integer recordId, String recordUser, String category, Double price, Double amount, Double weight, Byte status, Double sumPrice, String shoppingTime, String createTime, String updateTime) {
+    public Fu_shopping_record(Integer recordId, String recordUser, String category, String goodName,Double price, Double amount, Double weight, Byte status, Double sumPrice, String shoppingTime, String createTime, String updateTime) {
         this.recordId = recordId;
         this.recordUser = recordUser;
         this.category = category;
+        this.goodName=goodName;
         this.price = price;
         this.amount = amount;
         this.weight = weight;

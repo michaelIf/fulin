@@ -17,6 +17,7 @@
 <body>
 <br><br>
 <center><h3>添加消费记录</h3></center>
+<form action="/myWeb/recordshopping/add" method="post">
 <table class="table" border="1" align="center">
     <thead>
     <tr>
@@ -50,10 +51,11 @@
         <td> <input placeholder="请输入重量" type="text" name="weight"/></td>
         <td> <input placeholder="请输入总价" type="text" name="sumPrice"/></td>
         <td> <input placeholder="请输入日期" type="text" name="shoppingTime"/></td>
-
     </tr>
     </tbody>
 </table>
+<div align="center"><input type="submit" value="提交记录"/> <input type="reset"/></div>
+</form>
 <button onclick="fun()">增加一行</button>
 <button onclick="del()">删除一行</button>
 <script type="text/javascript">
