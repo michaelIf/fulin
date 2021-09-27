@@ -29,6 +29,7 @@ create TABLE fu_shopping_record(
     weight double, #记录重量
     status tinyint, # 记录状态 1成功，2全额退款，3部分退款
     sumPrice double, #记录总价
+    consumer varchar(50);#消费者
     shoppingTime date, #消费时间
     createTime date,#创建时间
     updateTime date #更新时间

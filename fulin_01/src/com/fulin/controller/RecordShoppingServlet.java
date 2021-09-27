@@ -17,7 +17,7 @@ import java.util.List;
 
 public class RecordShoppingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String recordUser,category,goodName;
+        String recordUser,category,goodName,consumer;
         Double price,amount,weight,sumPrice;
         String shoppingTime=null;
         String createTime,updateTime;
@@ -40,6 +40,7 @@ public class RecordShoppingServlet extends HttpServlet {
         String [] weights=request.getParameterValues("weight");
         String [] sumPrices=request.getParameterValues("sumPrice");
         String [] shoppingTimes=request.getParameterValues("shoppingTime");
+        String [] consumers=request.getParameterValues("consumer");
         for (int i=0;i<goodNames.length;i++){
             goodName=goodNames[i];
             if (goodName.equals("")||goodName.isEmpty()){
@@ -55,7 +56,8 @@ public class RecordShoppingServlet extends HttpServlet {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             createTime=sdf.format(time);
             updateTime=sdf.format(time);
-            fuRecord=new Fu_shopping_record(null,recordUser,category,goodName,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime);
+            consumer=consumers[i];
+            fuRecord=new Fu_shopping_record(null,recordUser,category,goodName,price,amount,weight,status,sumPrice,shoppingTime,createTime,updateTime,consumer);
             int temp=dao.addRecord(fuRecord,request);
             result +=temp;
             try {

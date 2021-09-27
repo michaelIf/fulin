@@ -15,6 +15,7 @@ public class Fu_shopping_record {
     private String shoppingTime;//消费时间
     private String createTime;//创建时间
     private String updateTime;//更新时间
+    private String consumer;//消费者
 
     public void setRecordId(Integer recordId) {
         this.recordId = recordId;
@@ -26,6 +27,14 @@ public class Fu_shopping_record {
 
     public void setRecordUser(String recordUser) {
         this.recordUser = recordUser;
+    }
+
+    public String getConsumer() {
+        return consumer;
+    }
+
+    public void setConsumer(String consumer) {
+        this.consumer = consumer;
     }
 
     public void setCategory(String category) {
@@ -115,11 +124,11 @@ public class Fu_shopping_record {
     public Fu_shopping_record() {
     }
 
-    public Fu_shopping_record(Integer recordId, String recordUser, String category, String goodName,Double price, Double amount, Double weight, Byte status, Double sumPrice, String shoppingTime, String createTime, String updateTime) {
+    public Fu_shopping_record(Integer recordId, String recordUser, String category, String goodName,Double price, Double amount, Double weight, Byte status, Double sumPrice, String shoppingTime, String createTime, String updateTime,String consumer) {
         this.recordId = recordId;
         this.recordUser = recordUser;
         this.category = category;
-        this.goodName=goodName;
+        this.goodName = goodName;
         this.price = price;
         this.amount = amount;
         this.weight = weight;
@@ -128,5 +137,6 @@ public class Fu_shopping_record {
         this.shoppingTime = shoppingTime;
         this.createTime = createTime;
         this.updateTime = updateTime;
+        this.consumer = consumer;
     }
 }

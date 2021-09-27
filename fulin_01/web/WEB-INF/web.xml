@@ -15,6 +15,14 @@
         <servlet-name>RecordShoppingServlet</servlet-name>
         <servlet-class>com.fulin.controller.RecordShoppingServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FindShoppingServlet</servlet-name>
+        <servlet-class>com.fulin.controller.FindShoppingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FindShoppingServlet</servlet-name>
+        <url-pattern>/shopping/find</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RecordShoppingServlet</servlet-name>
         <url-pattern>/recordshopping/add</url-pattern>
