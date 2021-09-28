@@ -40,7 +40,7 @@ public class FuRecordDao {
         return result;
     }
     //查找最近的10条
-    public List findDefault10(){
+    public List<Fu_shopping_record> findDefault10(){
         String sql="select * from fu_shopping_record order by recordId desc limit 10";
         PreparedStatement ps=util.createStatement(sql);
         ResultSet rs=null;
